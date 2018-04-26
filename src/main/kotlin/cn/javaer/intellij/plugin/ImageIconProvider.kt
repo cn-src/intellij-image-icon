@@ -31,9 +31,12 @@ class ImageIconProvider : IconProvider() {
             return null
         }
         val outputStream = ByteArrayOutputStream()
-        Thumbnails.of(Files.newInputStream(Paths.get(canonicalPath)))
-                .size(16, 16)
-                .toOutputStream(outputStream)
+        Files.newInputStream(Paths.get(canonicalPath)).use {
+            Thumbnails.of(it)
+                    .size(16, 16)
+                    .toOutputStream(outputStream)
+        }
+
         return ImageIcon(outputStream.toByteArray())
     }
 }
