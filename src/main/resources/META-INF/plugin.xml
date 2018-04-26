@@ -1,0 +1,23 @@
+<idea-plugin>
+    <id>image-icon</id>
+    <name>Image Icon</name>
+    <vendor email="710692586@qq.com" url="https://github.com/cn-src/intellij-image-icon">zhangpeng</vendor>
+
+    <description><![CDATA[
+      IntelliJ Image Icon<br/>
+      Supported: JPEG, PNG, GIF, BMP, WBMP
+    ]]></description>
+
+    <change-notes>
+    </change-notes>
+
+    <idea-version since-build="172.0"/>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <iconProvider implementation="cn.javaer.intellij.plugin.ImageIconProvider"/>
+    </extensions>
+
+</idea-plugin>
