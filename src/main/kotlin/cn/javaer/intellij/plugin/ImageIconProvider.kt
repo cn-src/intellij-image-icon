@@ -9,6 +9,7 @@ import java.io.ByteArrayOutputStream
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.nio.file.attribute.FileTime
+import java.util.concurrent.TimeUnit
 import javax.swing.Icon
 import javax.swing.ImageIcon
 
@@ -16,17 +17,20 @@ import javax.swing.ImageIcon
  * @author zhangpeng
  */
 class ImageIconProvider : IconProvider() {
-    private val cache = CacheBuilder.newBuilder().maximumSize(100).build<String, Pair<FileTime, ImageIcon>>(CacheLoader.from { key ->
-        val outputStream = ByteArrayOutputStream()
-        val path = Paths.get(key)
-        Files.newInputStream(path).use {
-            Thumbnails.of(it)
-                    .size(16, 16)
-                    .toOutputStream(outputStream)
-        }
+    private val cache = CacheBuilder.newBuilder()
+            .maximumSize(100)
+            .expireAfterAccess(5, TimeUnit.MINUTES)
+            .build<String, Pair<FileTime, ImageIcon>>(CacheLoader.from { key ->
+                val outputStream = ByteArrayOutputStream()
+                val path = Paths.get(key)
+                Files.newInputStream(path).use {
+                    Thumbnails.of(it)
+                            .size(16, 16)
+                            .toOutputStream(outputStream)
+                }
 
-        return@from Pair(Files.getLastModifiedTime(path), ImageIcon(outputStream.toByteArray()))
-    })
+                return@from Pair(Files.getLastModifiedTime(path), ImageIcon(outputStream.toByteArray()))
+            })
 
     override fun getIcon(element: PsiElement, flags: Int): Icon? {
         val psiFile = element.containingFile
