@@ -34,7 +34,6 @@ class ImageIconProvider : IconProvider() {
 
     override fun getIcon(element: PsiElement, flags: Int): Icon? {
         val psiFile = element.containingFile
-        psiFile.modificationStamp
         if (psiFile?.virtualFile?.canonicalFile?.canonicalPath == null) {
             return null
         }
