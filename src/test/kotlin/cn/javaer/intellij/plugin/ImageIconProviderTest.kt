@@ -6,7 +6,7 @@ import java.io.ByteArrayOutputStream
 import javax.swing.ImageIcon
 
 /**
- * @author zhangpeng
+ * @author cn-src
  */
 class ImageIconProviderTest {
     @Test

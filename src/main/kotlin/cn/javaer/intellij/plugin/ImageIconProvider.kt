@@ -14,7 +14,7 @@ import javax.swing.Icon
 import javax.swing.ImageIcon
 
 /**
- * @author zhangpeng
+ * @author cn-src
  */
 class ImageIconProvider : IconProvider() {
     private val cache = CacheBuilder.newBuilder()

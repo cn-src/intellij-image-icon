@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>image-icon</id>
     <name>Image Icon</name>
-    <vendor email="710692586@qq.com" url="https://github.com/cn-src/intellij-image-icon">zhangpeng</vendor>
+    <vendor email="public@javaer.cn" url="https://github.com/cn-src/intellij-image-icon">cn-src</vendor>
 
     <description><![CDATA[
       IntelliJ Image Icon<br/>
